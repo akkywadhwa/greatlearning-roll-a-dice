@@ -51,14 +51,7 @@ class Playground:
         dice_rolled = Dice.roll()
         print(dice_rolled)
 
-        if dice_rolled == 1:
-            if player.get_previous_roll == 1:
-                player.skip_next_turn(True)
-            player.add_points(dice_rolled)
-            if player.get_points() >= self.minimum_score:
-                self.announce_winner(player)
-            self.calculate_rank()
-        elif dice_rolled == 6:
+        if dice_rolled == 6:
             player.add_points(dice_rolled)
             if player.get_points() >= self.minimum_score:
                 self.announce_winner(player)
@@ -68,6 +61,9 @@ class Playground:
                 print(player.get_name() + " got another turn")
                 self.play_move(player, continous_move_count+1)
         else:
+            if dice_rolled == 1:
+                if player.get_previous_roll == 1:
+                    player.skip_next_turn(True)
             player.add_points(dice_rolled)
             if player.get_points() >= self.minimum_score:
                 self.announce_winner(player)
